@@ -1,6 +1,7 @@
 var express = require("express");
 var app = express();
 var parser = require("body-parser");
+var _ = require("lodash");
 
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
@@ -36,16 +37,25 @@ router.route("/notes")
   })
 
   .get(function(request, response) {
-    console.log(JSON.stringify(request.query));
     Note.find(function(err, notes) {
       if(err) {
         response.send(err);
       }
-      response.json(notes);
+      if(_.isEmpty(request.query)) {
+        response.json(notes);
+      } else {
+        Note.find({ body: new RegExp(request.query['q'], 'i') }, function(err, notes) {
+          if(err) {
+            response.send(err);
+          } else {
+            response.json(notes);
+          }
+        });
+      }
     });
   });
 
-router.route("/notes/:note_id")  
+router.route("/notes/:note_id")
   .get(function(request, response) {
     Note.findById(request.params.note_id, function(err, note) {
       if(err) {
@@ -58,4 +68,4 @@ router.route("/notes/:note_id")
 app.use("/api", router);
 
 app.listen(port);
-console.log("Magic happens on port " + port);
+console.log("Running server on port " + port);
