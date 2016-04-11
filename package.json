@@ -1,0 +1,14 @@
+{
+  "name": "notes_api",
+  "version": "1.0.0",
+  "description": "Notes API for awesome note taking ability",
+  "main": "server.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "express": "4.13.4",
+    "lodash": "4.10.0",
+    "mongoose": "4.4.12"
+  }
+}
