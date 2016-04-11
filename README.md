@@ -3,7 +3,8 @@ An awesome API that allows for badass CRUD note taking action
 
 ## Getting Started
 
-After you have cloned this repo, please follow these steps:
+After you have cloned this repo, please set up the application by running:
+
 `npm install`
 
 After setting up, you can run the application using node:
