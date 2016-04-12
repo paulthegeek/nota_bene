@@ -1,3 +1,4 @@
+require("dotenv").config();
 var express = require("express");
 var app = express();
 var parser = require("body-parser");
@@ -9,9 +10,7 @@ app.use(parser.json());
 var port = process.env.PORT || 3000;
 
 var mongoose = require("mongoose");
-mongoose.connect(
-  "mongodb://lois:Jedimaster24@jello.modulusmongo.net:27017/idamE8hy"
-);
+mongoose.connect(process.env.DB_URL);
 
 var Note = require("./app/models/note");
 
