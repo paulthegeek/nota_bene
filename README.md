@@ -34,7 +34,7 @@ Install Jasmine CLI
 
 `npm install -g jasmine`
 
-To run specs run this command in project directory
+To run specs enter this command into your terminal within project directory
 
 `jasmine`
 
