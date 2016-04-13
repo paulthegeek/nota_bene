@@ -28,3 +28,21 @@ GET: `api/notes?q=search_term_here`
 ### Create a note
 
 POST: `api/notes`
+
+## Testing
+Install Jasmine CLI
+`npm install -g jasmine`
+
+To run specs run this command in project directory
+`jasmine`
+
+## Additional Questions
+
+How well does your note-searching-api scale or not scale? How would you make
+your search more efficient?
+
+How would you add security to your API?
+
+What features should we add to this API next?
+
+How would you test the API?

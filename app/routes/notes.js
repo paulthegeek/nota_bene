@@ -28,7 +28,8 @@ router.route("/notes")
       if(_.isEmpty(request.query)) {
         response.json(notes);
       } else {
-        Note.find({ body: new RegExp(request.query['q'], 'i') }, function(err, notes) {
+        Note.find({ body: new RegExp(
+          request.query['q'], 'i') }, function(err, notes) {
           if(err) {
             response.send(err);
           } else {
@@ -40,6 +41,23 @@ router.route("/notes")
   });
 
 router.route("/notes/:note_id")
+  .put(function(request, response) {
+    Note.findById(request.params.note_id, function(err, note) {
+      if(err) {
+        response.send(err);
+      }
+      note.body = request.body.body;
+
+      note.save(function(err) {
+        if(err) {
+          response.send(err);
+        }
+
+        response.json({ message: "Note updated..." });
+      });
+    });
+  })
+
   .get(function(request, response) {
     Note.findById(request.params.note_id, function(err, note) {
       if(err) {
