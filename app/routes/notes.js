@@ -6,70 +6,13 @@
   var _ = require("lodash");
 
   setupCORS();
+  getAPI();
+  getNotes();
+  getNote();
+  createNote();
+  updateNote();
+  //deleteNote();
 
-  router.get("/", function(request, response) {
-    response.json({ message: "Welcome to the Note API!" });
-  });
-
-  router.route("/notes")
-  .post(function(request, response) {
-    var note = new Note();
-    note.body = request.body.body;
-
-    note.save(function(error) {
-      if(error) {
-        response.send(error);
-      }
-      response.json({ message: "A saved note..." });
-    });
-  })
-
-  .get(function(request, response) {
-    Note.find(function(error, notes) {
-      if(error) {
-        response.send(error);
-      }
-      if(_.isEmpty(request.query)) {
-        response.json(notes);
-      } else {
-        Note.find({ body: new RegExp(
-          request.query['q'], 'i') }, function(error, notes) {
-            if(error) {
-              response.send(error);
-            } else {
-              response.json(notes);
-            }
-          });
-      }
-    });
-  });
-
-  router.route("/notes/:note_id")
-  .put(function(request, response) {
-    Note.findById(request.params.note_id, function(error, note) {
-      if(error) {
-        response.send(error);
-      }
-      note.body = request.body.body;
-
-      note.save(function(error) {
-        if(error) {
-          response.send(error);
-        }
-
-        response.json({ message: "Note updated..." });
-      });
-    });
-  })
-
-  .get(function(request, response) {
-    Note.findById(request.params.note_id, function(error, note) {
-      if(error) {
-        response.send(error);
-      }
-      response.json(note);
-    });
-  });
 
   function setupCORS() {
     router.use(function(request, response, next) {
@@ -81,6 +24,82 @@
       );
       next();
     });
+  }
+
+  function getAPI() {
+    router.get("/", function(request, response) {
+      response.json({ message: "Welcome to the Note API!" });
+    });
+  }
+
+  function getNotes() {
+    router.route("/notes")
+      .get(function(request, response) {
+        Note.find(function(error, notes) {
+          if(error) {
+            response.send(error);
+          }
+          if(_.isEmpty(request.query)) {
+            response.json(notes);
+          } else {
+            Note.find({ body: new RegExp(
+              request.query['q'], 'i') }, function(error, notes) {
+                if(error) {
+                  response.send(error);
+                } else {
+                  response.json(notes);
+                }
+              });
+          }
+        });
+      });
+  }
+
+  function getNote() {
+    router.route("/notes/:note_id")
+      .get(function(request, response) {
+        Note.findById(request.params.note_id, function(error, note) {
+          if(error) {
+            response.send(error);
+          }
+          response.json(note);
+        });
+      });
+  }
+
+  function createNote() {
+    router.route("/notes")
+      .post(function(request, response) {
+        var note = new Note();
+        note.body = request.body.body;
+
+        note.save(function(error) {
+          if(error) {
+            response.send(error);
+          }
+          response.json({ message: "A saved note..." });
+        });
+      });
+  }
+
+  function updateNote() {
+    router.route("/notes/:note_id")
+      .put(function(request, response) {
+        Note.findById(request.params.note_id, function(error, note) {
+          if(error) {
+            response.send(error);
+          }
+          note.body = request.body.body;
+
+          note.save(function(error) {
+            if(error) {
+              response.send(error);
+            }
+
+            response.json({ message: "Note updated..." });
+          });
+        });
+      });
   }
 
   module.exports = router;

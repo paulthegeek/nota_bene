@@ -2,7 +2,7 @@ var request = require("request");
 var routes = require("../../app/routes/notes");
 var config = require("../../app/config");
 var app = require("../../app");
-var base_url = "http://localhost:3000/api/"
+var base_url = "http://localhost:5000/api/"
 var _ = require("lodash");
 
 describe("Notes", function() {
