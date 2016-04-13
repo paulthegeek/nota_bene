@@ -31,9 +31,11 @@ POST: `api/notes`
 
 ## Testing
 Install Jasmine CLI
+
 `npm install -g jasmine`
 
 To run specs run this command in project directory
+
 `jasmine`
 
 ## Additional Questions
