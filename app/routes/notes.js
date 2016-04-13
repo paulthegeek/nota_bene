@@ -1,25 +1,10 @@
-require("dotenv").config();
+var Note = require("../models/note");
 var express = require("express");
-var app = express();
-var parser = require("body-parser");
+var router = express.Router();
 var _ = require("lodash");
 
-app.use(parser.urlencoded({ extended: true }));
-app.use(parser.json());
-
-var port = process.env.PORT || 3000;
-
-var mongoose = require("mongoose");
-mongoose.connect(process.env.DB_URL);
-
-var Note = require("./app/models/note");
-
-
-var router = express.Router();
-
-
 router.get("/", function(request, response) {
-  response.json({ message: "Yay! API" });
+  response.json({ message: "Welcome to the Note API!" });
 });
 
 router.route("/notes")
@@ -64,7 +49,4 @@ router.route("/notes/:note_id")
     });
   });
 
-app.use("/api", router);
-
-app.listen(port);
-console.log("Running server on port " + port);
+module.exports = router;

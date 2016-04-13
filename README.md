@@ -9,7 +9,7 @@ After you have cloned this repo, please set up the application by running:
 
 After setting up, you can run the application using node:
 
-`node server.js`
+`node app.js`
 
 ## API Documentation
 
