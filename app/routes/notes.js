@@ -58,7 +58,6 @@
     router.route("/notes/:note_id")
       .get(function(request, response) {
         Note.findById(request.params.note_id, function(error, note) {
-          console.log(error);
           if(error || note === null) {
             response.json({ message: "Sorry, we cannot retrive this note" });
           }
