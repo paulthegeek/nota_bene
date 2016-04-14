@@ -1,6 +1,8 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+(function() {
+  var mongoose = require("mongoose");
+  var Schema = mongoose.Schema;
 
-var NoteSchema = new Schema({ body: String });
+  var NoteSchema = new Schema({ body: String });
 
-module.exports = mongoose.model("Note", NoteSchema);
+  module.exports = mongoose.model("Note", NoteSchema);
+})();
