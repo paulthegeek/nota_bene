@@ -27,11 +27,19 @@ GET: `api/notes/:id`
 
 ### Search for note
 
-GET: `api/notes?q=search_term_here`
+GET: `api/notes?q=search_term`
 
 ### Create a note
 
 POST: `api/notes`
+
+### Update a note
+
+PUT: `api/notes/:id`
+
+### Delete a note
+
+DELETE: `api/notes/:id`
 
 ## Testing
 Install Jasmine CLI

@@ -11,8 +11,7 @@
   getNote();
   createNote();
   updateNote();
-  //deleteNote();
-
+  deleteNote();
 
   function setupCORS() {
     router.use(function(request, response, next) {
@@ -39,7 +38,7 @@
           if(error) {
             response.send(error);
           }
-          if(_.isEmpty(request.query)) {
+          if(noQuery(request.query)) {
             response.json(notes);
           } else {
             Note.find({ body: new RegExp(
@@ -59,8 +58,9 @@
     router.route("/notes/:note_id")
       .get(function(request, response) {
         Note.findById(request.params.note_id, function(error, note) {
-          if(error) {
-            response.send(error);
+          console.log(error);
+          if(error || note === null) {
+            response.json({ message: "Sorry, we cannot retrive this note" });
           }
           response.json(note);
         });
@@ -100,6 +100,26 @@
           });
         });
       });
+  }
+
+  function deleteNote() {
+    router.route("/notes/:note_id")
+      .delete(function(request, response) {
+        Note.remove({
+          _id: request.params.note_id
+        }, function(error, note) {
+          if (error) {
+            response.json({ message: "Sorry could not delete this note" });
+          } else {
+            response.json({ message: 'Note Deleted...' });
+          }
+
+        });
+      });
+  }
+
+  function noQuery(query) {
+    _.isEmpty(query);
   }
 
   module.exports = router;
