@@ -11,6 +11,10 @@ After setting up, you can run the application using node:
 
 `node app.js`
 
+The default port is set to 5000 so you can access the API at this URL
+
+`http://localhost:5000/api/`
+
 ## API Documentation
 
 ### Get All Notes
@@ -58,6 +62,7 @@ your search more efficient?
 - Ability to update and delete a note(I already implemented this)
 - Associate a note a user. This would require a user table with a one to many association
 - Ability to add a tag/category. This would allow for better organization if it is something a user desired.
+- Ability to link the note so you could share it with others.
 - Data syncing. This would allow notes to be available across multiple platforms (iOS, Android, Web, Etc.) in near real-time.
 
 ### How would you test the API?
