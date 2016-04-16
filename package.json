@@ -2,6 +2,10 @@
   "name": "notes_api",
   "version": "1.0.0",
   "description": "Notes API for awesome note taking ability",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paulthegeek/nota_bene.git"
+  },
   "main": "app.js",
   "author": "",
   "license": "MIT",
