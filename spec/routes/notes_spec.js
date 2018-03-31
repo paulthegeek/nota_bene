@@ -25,28 +25,28 @@ describe("Notes", function() {
     });
   });
 
-  describe("GET /notes", function() {
-    var url = base_url + "/notes";
-    it("returns a status code 200", function(done) {
-      request.get(url, function(error, response, body) {
+//   describe("GET /notes", function() {
+//     var url = base_url + "/notes";
+//     it("returns a status code 200", function(done) {
+//       request.get(url, function(error, response, body) {
 
-        expect(response.headers['content-type'])
-               .toBe("application/json; charset=utf-8");
-        expect(response.statusCode).toBe(200);
+//         expect(response.headers['content-type'])
+//                .toBe("application/json; charset=utf-8");
+//         expect(response.statusCode).toBe(200);
 
-        done();
-      });
-    });
+//         done();
+//       });
+//     });
 
-    it("contains note attributes", function(done) {
-      request.get(url, function(error, response, body) {
-        var note = _.first(JSON.parse(body));
+//     it("contains note attributes", function(done) {
+//       request.get(url, function(error, response, body) {
+//         var note = _.first(JSON.parse(body));
 
-        expect(note._id).toBeDefined();;
-        expect(note.body).toBeDefined();
+//         expect(note._id).toBeDefined();;
+//         expect(note.body).toBeDefined();
 
-        done();
-      });
-    });
-  });
+//         done();
+//       });
+//     });
+//   });
 });

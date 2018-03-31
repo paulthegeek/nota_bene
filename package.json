@@ -16,7 +16,6 @@
     "lodash": "4.10.0",
     "mongoose": "4.4.12",
     "request": "2.71.0"
-
   },
   "devDependencies": {
     "jasmine-node": "1.14.5"
